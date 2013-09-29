@@ -14,7 +14,7 @@ function get_slug()
 
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div class="span3">
+		<div class="span3 hidden-phone">
 			<?php get_template_part('area_navigation', 'leftnav'); ?>
 		</div>
 		<div class="span9">
@@ -37,7 +37,7 @@ function get_slug()
                   <ul class="nav nav-tabs">
                     <li><a href="../../info/<?php the_author(); ?>">Info</a></li>
                     <li><a href="../../meetings/<?php the_author(); ?>">Meetings</a></li>
-					<li class="active"><a href="#">News</a></li>
+                    <li class="active"><a href="#">News</a></li>
                   </ul>
                 </p>
 				<?php }

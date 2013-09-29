@@ -8,7 +8,7 @@ function get_slug()
 ?>
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div class="span3">
+		<div class="span3 hidden-phone">
 			<?php get_template_part('area_navigation', 'leftnav'); ?>
 		</div>
 		<div class="span9">

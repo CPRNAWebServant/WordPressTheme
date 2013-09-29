@@ -11,14 +11,10 @@
 		display:none;
 	  }
 	</style>
-
-<?php } }
+<?php } 
+}
 
 function cprna_wp_footer() { ?>
-	<div id="contact-footer">
-	If you have questions, suggestions, or need us to update information on our site, contact us using the email addresses provided on our <a href="/contact/">contact page</a>.
-	</div>
-
 	<?php // This bit of php turns off google analytics for admin users.
 	get_currentuserinfo();
 	global $user_level;
@@ -50,40 +46,56 @@ function cprna_posted_on() {
 	);
 }
 
+function cprna_strip_bmlt_class_names_filter($content) {
+  return preg_replace('[class="bmlt_simple_meetings_table"]', 'class="table"', $content, 1);
+}
+
+add_filter( 'the_content', 'cprna_strip_bmlt_class_names_filter');
+
+
+function cprna_get_meeting_format_codes_modal() {
+  $meetingFormatCodeModal .= '<div class="modal hide" id="meetingFormatModal" tabindex="-1" role="dialog" aria-labelledby="meetingFormatModalLabel">';
+  $meetingFormatCodeModal .= '<div class="modal-dialog">';
+  $meetingFormatCodeModal .= '<div class="modal-content">';
+  $meetingFormatCodeModal .= '<div class="modal-header">';
+  $meetingFormatCodeModal .= '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
+  $meetingFormatCodeModal .= '<h4>Meeting Format Codes</h4>';
+  $meetingFormatCodeModal .= '</div>';
+  $meetingFormatCodeModal .= '<div class="modal-body">';
+  $meetingFormatCodeModal .= '<p>[[BMLT_SIMPLE(switcher=GetFormats)]]</p>'; 
+  $meetingFormatCodeModal .= '</div>';
+  $meetingFormatCodeModal .= '<div class="modal-footer">';
+  $meetingFormatCodeModal .= '<a href="#" class="btn" data-dismiss="modal">Close</a>';
+  $meetingFormatCodeModal .= '</div>';
+  $meetingFormatCodeModal .= '</div><!-- /.modal-content -->';
+  $meetingFormatCodeModal .= '</div><!-- /.modal-dialog -->';
+  $meetingFormatCodeModal .= '</div><!-- /.modal -->';
+  return $meetingFormatCodeModal;
+}
+
 function cprna_regional_meetinglist_shortcode_filter($content) {
-	 $meetingListShortcodeFormat = '[[BMLT_SIMPLE(switcher=GetSearchResults'; 
+	 $meetingListShortcodeFormat .= '<div class="table-responsive">[[BMLT_SIMPLE(switcher=GetSearchResults'; 
 	 $meetingListShortcodeFormat .= '&weekdays=%s&meeting_key[]=location_province&meeting_key_value=%s';
 	 $meetingListShortcodeFormat .= '&services[]=37&services[]=38&services[]=39&services[]=40&services[]=41&services[]=42&services[]=43&services[]=44&services[]=45&services[]=46&services[]=47&services[]=48';
 	 $meetingListShortcodeFormat .= '&sort_key=time';
-	 $meetingListShortcodeFormat .= ')]]';
+   $meetingListShortcodeFormat .= ')]]</div>';
+   $meetingListShortcodeFormat .= cprna_get_meeting_format_codes_modal();
+
 
 	 $dayofweek = get_meetinglist_dayofweek();
 	 $state = get_meetinglist_state();
 	 return preg_replace('[\[regional-meeting-list\]]', sprintf($meetingListShortcodeFormat, $dayofweek, $state), $content, 1);
 }
 
+add_filter( 'the_content', 'cprna_regional_meetinglist_shortcode_filter', 1);
+
 function cprna_area_meetinglist_shortcode_filter($content) {
-  $meetingListContent = '<div class="row-fluid">';
   $meetingListContent .= '<p>Please inform us of any additions or corrections to this meeting list at <a href="mailto:meetings@cprna.org">meetings@cprna.org</a>.</p>';
-  $meetingListContent .= '<h3 style="float:left">Meetings</h3>';
-  $meetingListContent .= '<a class="btn" style="float:right" data-toggle="modal" href="#meetingFormatModal" >Meeting Format Code Legend</a>';
-  $meetingListContent .= '[[BMLT_SIMPLE(switcher=GetSearchResults&services[]=%s&sort_key=time)]]';
-  $meetingListContent .= '</div>'; 
   $meetingListContent .= '<div class="row-fluid">';
-  $meetingListContent .= '<div class="modal hide" id="meetingFormatModal">';
-  $meetingListContent .= '<div class="modal-header">';
-  $meetingListContent .= '<button type="button" class="close" data-dismiss="modal">x</button>';
-  $meetingListContent .= '<h3>Meeting Format Codes</h3>';
+  $meetingListContent .= '<h3 style="float:left">Meetings</h3>';
   $meetingListContent .= '</div>';
-  $meetingListContent .= '<div class="modal-body">';
-  $meetingListContent .= '<p>[[BMLT_SIMPLE(switcher=GetFormats)]]</p>'; 
-  $meetingListContent .= '</div>';
-  $meetingListContent .= '<div class="modal-footer">';
-  $meetingListContent .= '<a href="#" class="btn" data-dismiss="modal">Close</a>';
-  $meetingListContent .= '</div>';
-  $meetingListContent .= '</div>';
-  $meetingListContent .= '</div>'; 
-  
+  $meetingListContent .= '<div class="table-responsive">[[BMLT_SIMPLE(switcher=GetSearchResults&services[]=%s&sort_key=time)]]</div>';
+  $meetingListContent .= cprna_get_meeting_format_codes_modal();
   $serviceBodyId = get_service_body_id();
 
   if ($serviceBodyId != '') {
@@ -94,6 +106,8 @@ function cprna_area_meetinglist_shortcode_filter($content) {
     return $content;
   }
 }
+
+add_filter( 'the_content', 'cprna_area_meetinglist_shortcode_filter', 1);
 
 function get_service_body_id()
 {
@@ -134,7 +148,7 @@ function get_meetinglist_dayofweek(){
 	if (preg_match('/[1-7]$/', $dayofweek) == 0)
 	{
     date_default_timezone_set('EST');
-		$dayofweek = date("w")+1;
+    $dayofweek = date("w")+1;
 	}
 	
 	return $dayofweek;
@@ -168,6 +182,7 @@ function get_meetinglist_statemenu_listitems($atts) {
  $stateListTags = get_listtag($selectedState=='dc', 'Washington, DC', sprintf($urlFormat, 'dc'));
  $stateListTags .= get_listtag($selectedState=='md', 'Maryland', sprintf($urlFormat, 'md'));
  $stateListTags .= get_listtag($selectedState=='va', 'Virginia', sprintf($urlFormat, 'va'));
+ $stateListTags .= '<li class="pull-right"><div><a class="btn pull-right" data-toggle="modal" href="#meetingFormatModal" >Meeting Format Code Legend</a></div></li>';
  return $stateListTags;
 }
 
@@ -242,6 +257,32 @@ function cprna_change_author_base() {
     $wp_rewrite->author_base = $author_slug;
 }
 
+function cprna_widgets_init() {
+	// Area 1, located at the top of the sidebar.
+	register_sidebar( array(
+		'name' => __( 'Primary Widget Area', 'cprna' ),
+		'id' => 'primary-widget-area',
+		'description' => __( 'The primary widget area', 'cprna' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h4 class="widget-title">',
+		'after_title' => '</h4>',
+	) );
+
+	// Area 2, located below the Primary Widget Area in the sidebar. Empty by default.
+	register_sidebar( array(
+		'name' => __( 'Secondary Widget Area', 'cprna' ),
+		'id' => 'secondary-widget-area',
+		'description' => __( 'The secondary widget area', 'cprna' ),
+		'before_widget' => '<li id="%1$s" class="widget %2$s">',
+		'after_widget' => '</li>',
+		'before_title' => '<h4 class="widget-title">',
+		'after_title' => '</h4>',
+  ) );
+}
+add_action( 'widgets_init', 'cprna_widgets_init', 11 );
+
+require_once('wp_bootstrap_navwalker.php');
 add_action('init', 'cprna_change_author_base');
 add_action( 'init', 'create_custom_post_types' );
 add_shortcode('meetinglist-dayofweekmenu-listitems', 'get_meetinglist_dayofweekmenu_listitems');
@@ -249,8 +290,6 @@ add_shortcode('meetinglist-statemenu-listitems', 'get_meetinglist_statemenu_list
 add_action('wp_head', 'cprna_wp_head');
 add_action('wp_footer', 'cprna_wp_footer');
 add_action('em_event_output_condition', 'cprna_has_flyer_event_output_condition', 1, 4);
-add_filter( 'the_content', 'cprna_regional_meetinglist_shortcode_filter', 1);
-add_filter( 'the_content', 'cprna_area_meetinglist_shortcode_filter', 1);
 //add_action('init','cprna_add_query_vars');
 //add_action('init','cprna_add_rewrite_rules');
 
