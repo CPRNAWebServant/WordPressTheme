@@ -1,0 +1,42 @@
+/*
+Theme Name: cprna.org
+Description: Custom child theme for cprna site based on the twentyten wordpress theme.
+Author: Max Lancaster
+Template: twentyten
+*/
+
+@import url("../twentyten/style.css");
+
+#contact-footer {
+  background: white;
+  margin-top: -20px;
+  margin-right: auto;
+  margin-bottom: 20px;
+  margin-left: auto;
+  width: 940px;
+  padding-top: 0px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+
+#site-title {
+	display:none;
+}
+
+#site-description {
+	display:none;
+}
+
+table.bmlt_simple_meetings_table tr td {
+	    padding: 6px !important;
+}
+
+table.bmlt_simple_format_table tr td {
+	    padding: 1px 6px !important;   
+}
+
+#access .menu-header, div.menu {
+    font-size: 18px !important;
+}
