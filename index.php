@@ -15,7 +15,7 @@
 
 get_header(); ?>
 
-<div class="span9">
+<div class="col-xs-12 col-sm-9">
   <?php
   /* Run the loop to output the posts.
    * If you want to overload this in a child theme then include a file
@@ -25,7 +25,7 @@ get_header(); ?>
   ?>
 </div><!-- .span10 -->
 
-<div class="span3 hidden-phone">
+<div class="hidden-xs col-sm-3">
   <?php get_sidebar(); ?>
 </div>
 <?php get_footer(); ?>

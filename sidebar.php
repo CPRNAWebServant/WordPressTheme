@@ -8,8 +8,9 @@
  */
 ?>
 
-		<div class="well" role="complementary">
+		<div class="well well-sm " role="complementary">
 
+<div class="widget">
 <?php
 	/* When we call the dynamic_sidebar() function, it'll spit out
 	 * the widgets for that widget area. If it instead returns false,
@@ -36,7 +37,7 @@
 					<li><?php wp_loginout(); ?></li>
 					<?php wp_meta(); ?>
 				</ul>
-			</li>
+			</li></div>
 
 		<?php endif; // end primary widget area ?>
 		</div><!-- #primary .widget-area -->
@@ -52,4 +53,4 @@
 		</div><!-- #secondary .widget-area -->
 
 <?php endif; ?>
-
+</div>

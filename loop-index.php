@@ -18,9 +18,8 @@
 <?php endif; ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
-	<?php // Shows all admin posts and any other posts in regional-announcements category. Excludes configuration category for all users. ?>
-	<?php if ( is_archive() || (get_the_author_meta('ID') == 1 || in_category('regional-news')) ) : ?> 
-		<?php /* How to display posts of the Gallery format. The gallery category is the old way. */ ?>
+
+    <?php /* How to display posts of the Gallery format. The gallery category is the old way. */ ?>
 
 		<?php if ( ( function_exists( 'get_post_format' ) && 'gallery' == get_post_format( $post->ID ) ) || in_category( _x( 'gallery', 'gallery category slug', 'twentyten' ) ) ) : ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -124,7 +123,6 @@
 				</div><!-- #post-## -->
 			
 		<?php endif; // This was the if statement that broke the loop into three parts based on categories. ?>
-	<?php endif; // This was the if statement that determines which posts to display. ?>
 <?php endwhile; // End the loop. Whew. ?>
 
 <?php /* Display navigation to next/previous pages when applicable */ ?>

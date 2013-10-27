@@ -54,7 +54,7 @@ add_filter( 'the_content', 'cprna_strip_bmlt_class_names_filter');
 
 
 function cprna_get_meeting_format_codes_modal() {
-  $meetingFormatCodeModal .= '<div class="modal hide" id="meetingFormatModal" tabindex="-1" role="dialog" aria-labelledby="meetingFormatModalLabel">';
+  $meetingFormatCodeModal .= '<div class="modal fade" id="meetingFormatModal" tabindex="-1" role="dialog" aria-labelledby="meetingFormatModalLabel">';
   $meetingFormatCodeModal .= '<div class="modal-dialog">';
   $meetingFormatCodeModal .= '<div class="modal-content">';
   $meetingFormatCodeModal .= '<div class="modal-header">';
@@ -91,9 +91,7 @@ add_filter( 'the_content', 'cprna_regional_meetinglist_shortcode_filter', 1);
 
 function cprna_area_meetinglist_shortcode_filter($content) {
   $meetingListContent .= '<p>Please inform us of any additions or corrections to this meeting list at <a href="mailto:meetings@cprna.org">meetings@cprna.org</a>.</p>';
-  $meetingListContent .= '<div class="row-fluid">';
-  $meetingListContent .= '<h3 style="float:left">Meetings</h3>';
-  $meetingListContent .= '</div>';
+  $meetingListContent .= '<h3>Meetings</h3>';
   $meetingListContent .= '<div class="table-responsive">[[BMLT_SIMPLE(switcher=GetSearchResults&services[]=%s&sort_key=time)]]</div>';
   $meetingListContent .= cprna_get_meeting_format_codes_modal();
   $serviceBodyId = get_service_body_id();
@@ -182,7 +180,7 @@ function get_meetinglist_statemenu_listitems($atts) {
  $stateListTags = get_listtag($selectedState=='dc', 'Washington, DC', sprintf($urlFormat, 'dc'));
  $stateListTags .= get_listtag($selectedState=='md', 'Maryland', sprintf($urlFormat, 'md'));
  $stateListTags .= get_listtag($selectedState=='va', 'Virginia', sprintf($urlFormat, 'va'));
- $stateListTags .= '<li class="pull-right"><div><a class="btn pull-right" data-toggle="modal" href="#meetingFormatModal" >Meeting Format Code Legend</a></div></li>';
+ $stateListTags .= '<li class="pull-right"><div><button type="button" class="btn" data-toggle="modal" data-target="#meetingFormatModal" >Meeting Format Code Legend</button></div></li>';
  return $stateListTags;
 }
 
@@ -263,7 +261,7 @@ function cprna_widgets_init() {
 		'name' => __( 'Primary Widget Area', 'cprna' ),
 		'id' => 'primary-widget-area',
 		'description' => __( 'The primary widget area', 'cprna' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'before_widget' => '<div id="%1$s" class="%2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h4 class="widget-title">',
 		'after_title' => '</h4>',
@@ -274,8 +272,8 @@ function cprna_widgets_init() {
 		'name' => __( 'Secondary Widget Area', 'cprna' ),
 		'id' => 'secondary-widget-area',
 		'description' => __( 'The secondary widget area', 'cprna' ),
-		'before_widget' => '<li id="%1$s" class="widget %2$s">',
-		'after_widget' => '</li>',
+		'before_widget' => '<div id="%1$s" class="%2$s">',
+		'after_widget' => '</div>',
 		'before_title' => '<h4 class="widget-title">',
 		'after_title' => '</h4>',
   ) );

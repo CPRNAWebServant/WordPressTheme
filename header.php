@@ -54,12 +54,9 @@
 </head>
 
 <body>
-<div id="cprna-wrapper" class="container-fluid" >
+<div id="cprna-wrapper" class="container" >
 	<div id="header">
 		<div id="masthead">
-      <img src="http://www.cprna.org/wordpress/wp-content/uploads/2011/11/434x92xcp_na_logo.jpg.pagespeed.ic.pn3RWEnJ8-.jpg"
-            width="434" height="92" alt="" class="visible-phone" style="padding-bottom: 15px"/>
-     
       <div id="branding" role="banner">
         <?php $heading_tag = ( is_home() || is_front_page() ) ? 'h1' : 'div'; ?>
         <<?php echo $heading_tag; ?> id="site-title">
@@ -98,17 +95,26 @@
           ?>
           <?php endif; ?>
       </div><!-- #branding -->
-      <div class="navbar navbar-inverse">
-        <div class="header-image">
-          <img src="<?php header_image(); ?>" width="<?php echo $header_image_width; ?>" height="<?php echo $header_image_height; ?>" 
-               alt="" class="hidden-phone center"/>
+      <img src="/wordpress/wp-content/uploads/2011/11/cp_na_logo.jpg" alt="" class="img-responsive visible-xs" style="padding-bottom: 15px"/>
+      <div class="header-image hidden-xs">
+         <img src="<?php  header_image(); ?>" alt="" class="center img-responsive"/>
+      </div>
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-cprna-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="helpline-text navbar-text visible-xs"><strong>Helpline: <a href="tel:1-800-543-4670">1-800-543-4670</a></strong></div>
+          <div class="helpline-text navbar-text hidden-xs"><strong>Helpline: 1-800-543-4670</strong></div>
         </div>
         <?php /* Our navigation menu. If one isn't filled out, wp_nav_menu falls back to wp_page_menu. The menu assiged to the primary position is the one used. If none is assigned, the menu with the lowest ID is used. */ ?>
-        <?php wp_nav_menu( array( 'container_class' => 'navbar-inner', 'theme_location' => 'primary', 
-              'menu_class' => 'nav', 'walker' => new wp_bootstrap_navwalker()) ); ?>
-        <p class="navbar-text pull-right lead">Helpline: 1-800-543-4670</p>
-      </div><!-- #navbar -->
+        <?php wp_nav_menu( array( 'container_class' => 'collapse navbar-collapse navbar-cprna-collapse', 'theme_location' => 'primary', 
+              'menu_class' => 'nav navbar-nav', 'walker' => new wp_bootstrap_navwalker()) ); ?>
+      </nav><!-- #navbar -->
 		</div><!-- #masthead -->
 	</div><!-- #header -->
 
-	<div class="row-fluid">
+	<div class="row">
