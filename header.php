@@ -95,7 +95,7 @@
           ?>
           <?php endif; ?>
       </div><!-- #branding -->
-      <img src="/wordpress/wp-content/uploads/2011/11/cp_na_logo.jpg" alt="" class="img-responsive visible-xs" style="padding-bottom: 15px"/>
+      <img src="/wordpress/wp-content/uploads/2016/12/cp_na_logo.jpg" alt="" class="img-responsive visible-xs" style="padding-bottom: 15px"/>
       <div class="header-image hidden-xs">
          <img src="<?php  header_image(); ?>" alt="" class="center img-responsive"/>
       </div>
@@ -107,8 +107,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="helpline-text navbar-text visible-xs"><strong>Helpline: <a href="tel:1-800-543-4670">1-800-543-4670</a></strong></div>
-          <div class="helpline-text navbar-text hidden-xs"><strong>Helpline: 1-800-543-4670</strong></div>
+          <div class="helpline-text navbar-text visible-xs"><strong>Phoneline: <a href="tel:1-800-543-4670">1-800-543-4670</a></strong></div>
+          <div class="helpline-text navbar-text hidden-xs"><strong>Phoneline: 1-800-543-4670</strong></div>
         </div>
         <?php /* Our navigation menu. If one isn't filled out, wp_nav_menu falls back to wp_page_menu. The menu assiged to the primary position is the one used. If none is assigned, the menu with the lowest ID is used. */ ?>
         <?php wp_nav_menu( array( 'container_class' => 'collapse navbar-collapse navbar-cprna-collapse', 'theme_location' => 'primary', 
