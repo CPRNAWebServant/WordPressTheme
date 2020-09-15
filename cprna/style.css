@@ -1,0 +1,118 @@
+/*
+Theme Name: cprna.org
+Description: Custom theme for cprna site.
+Author: Max Lancaster
+
+*/
+
+img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.header-image img {
+    border: 4px solid;
+    border-color: rgb(230, 230, 230);
+}
+
+div.header-image {
+    padding-bottom: 5px;   
+}
+
+#colophon {
+    margin-top: 10px;
+    border-top: 4px solid rgb(0, 0, 0);
+    overflow: hidden;
+    padding: 18px 0px;
+}
+
+#cprna-wrapper {
+  background: white;
+  margin-top: 20px;
+}
+
+#contact-footer {
+  margin-bottom: 20px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  padding: 18px 0px;
+}
+
+#site-info a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+#site-title {
+	display:none;
+}
+
+#site-description {
+	display:none;
+}
+
+.helpline-text {
+ padding-left: 5px;
+}
+
+.entry-title a:link, 
+.entry-title a:visited {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.entry-meta a, .entry-utility a {
+    color: rgb(119, 119, 119);
+}
+
+.entry-meta {
+    color: rgb(119, 119, 119);
+    font-size: 12px;
+}
+
+.navigation {
+    color: rgb(119, 119, 119);
+    font-size: 12px;
+    line-height: 18px;
+    overflow: hidden;
+}
+
+.navigation a:link, .navigation a:visited {
+    color: rgb(119, 119, 119);
+    text-decoration: none;
+}
+
+#nav-above {
+    display: none;
+}
+
+#nav-below {
+    padding-top: 5px;
+}
+/* Sidebar
+----------------------------------------------------------------------------------------*/
+div.widget {
+  margin-bottom: 18px;
+}
+h4.widget-title {
+  font-weight: bold;
+  line-height: 18px;
+  color: #999;
+  text-transform: uppercase;
+  margin-top: 9px;
+}
+.widget ul li {
+  list-style: none;
+  padding-top: 3px;
+  margin-left: -30px;
+}
+.widget ul > li > a {
+  display: block;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.widget ul > li > a:hover {
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+  background-color: #08C;
+}
