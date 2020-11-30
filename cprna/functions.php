@@ -3,7 +3,7 @@
 
   <meta name="keywords" content="addiction, recovery, drug problem, substance abuse, support groups, twelve steps, twelve step programs, twelve step meetings, 12-step, na, aa, narcotics anonymous, NA meetings, washington dc, district of columbia, northern virginia, maryland, alcohol, marijuana, heroin, crack, crystal meth, opioid" />
 
-  <link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/favicon.ico" />
+  <link rel="shortcut icon" href="https://www.cprna.org/favicon.ico" />
   <?php if(is_page(450)) { ?>
 
   <style type="text/css">
