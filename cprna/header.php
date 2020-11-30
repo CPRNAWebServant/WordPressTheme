@@ -97,9 +97,9 @@
           ?>
           <?php endif; ?>
       </div><!-- #branding -->
-      <img src="/wordpress/wp-content/uploads/2016/12/cp_na_logo.jpg" alt="" class="img-responsive visible-xs" style="padding-bottom: 15px"/>
+      <img src="https://www.cprna.org/wp-content/uploads/2020/11/cp_na_logo.jpg" alt="" class="img-responsive visible-xs" style="padding-bottom: 15px"/>
       <div class="header-image hidden-xs">
-         <img src="<?php  header_image(); ?>" alt="" class="center img-responsive"/>
+         <img src="https://www.cprna.org/wp-content/uploads/2020/11/cprna-header.jpg" alt="" class="center img-responsive"/>
       </div>
       <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
